@@ -51,8 +51,8 @@ JDAW is available in three formats:
 
 **Setup:** Install [Node.js](https://nodejs.org/en/) and inside the repository run `npm install`  
 **Development**: `npm start` (this will start a local server and compile automatically everytime a file changes)  
-**Bundle**: `npm run bundle` (this will copy www/ to build/www/\<version\>)  
-**Build**: `npm run build`  (this create binary executables for all common platforms in build/bin/\<version\>)
+**Bundle**: `npm run bundle` (this will copy `www/` to `build/www/<version>`)  
+**Build**: `npm run build`  (this will create binary executables for all common platforms in `build/bin/<version>`)
 
 The source is written in es6 and transpiled with babel using the `es2015` preset and `transform-class-properties` plugin.   Bundling is done with [rollupjs](http://rollupjs.org/) and the following plugins: `babel`, `commonjs`, `json`, `node-resolve`, `string`, `uglify`
 
