@@ -67,3 +67,8 @@ The source is written in es6 and transpiled with babel using the `es2015` preset
 MIT ([LICENSE.txt](LICENSE.txt))  
 
 See `/licenses` for external libraries and resources
+
+## Special Thanks
+
+Anders Kaare ([@sqaxomonophonen](https://github.com/sqaxomonophonen)) - technical consulting  
+Tommy Hodgins ([@tomhodgins](https://github.com/tomhodgins)) - design consulting
