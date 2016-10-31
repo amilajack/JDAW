@@ -5,6 +5,8 @@ var path = "src/_assets/plugins"
 var fileEnding = ".jap"
 var plugins =  fs.readdirSync(path).filter(v=>fs.statSync(path+"/"+v).isDirectory()).map(v=>[v,fs.readdirSync(path+"/"+v)])
 
+!fs.existsSync("www") && fs.mkdirSync("www")
+!fs.existsSync("www/Plugins") && fs.mkdirSync("www/Plugins")
 fs.writeFile("www/plugins/index", plugins.map(v=>v[0]+fileEnding).join("\n"), function(err) { err && console.log(err)})
 
 plugins.forEach(function(v)
