@@ -49,8 +49,8 @@
 	{
 		"name": "Help",
 		"items": [
-			{ "name": "Getting started", "type": "link|https://github.com/literallylara/JDAW/docs/getting-started.md" },
-			{ "name": "Plugin development", "type": "link|https://github.com/literallylara/JDAW/docs/plugin-development.md" },
+			{ "name": "Getting started", "type": "link|https://github.com/literallylara/JDAW/tree/master/docs/getting-started.md" },
+			{ "name": "Plugin development", "type": "link|https://github.com/literallylara/JDAW/tree/master/docs/plugin-development.md" },
 			{ "name": "About", "type": "popup" }
 		]
 	}
