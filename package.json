@@ -39,7 +39,7 @@
     "build:current": "nwbuild -r www -v 0.18.0",
     "build": "node scripts/build.js",
     "bundle:plugins": "node scripts/bundlePlugins.js",
-    "bundle": "npm run sass && rollup -c --environment final && node scripts/bundle.js",
+    "bundle": "npm run bundle:plugins && npm run bundle:html && npm run sass && rollup -c --environment final && node scripts/bundle.js",
     "bundle:html": "node scripts/bundleHtml.js"
   },
   "babel": {
