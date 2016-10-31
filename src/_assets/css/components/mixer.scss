@@ -1,0 +1,52 @@
+.mixer {
+
+	height: 100%;
+	display: flex;
+
+	ul {
+		height: 100%;
+		list-style: none;
+		display: inline-flex;
+		flex-direction: column;
+		align-items: stretch;
+		box-sizing: border-box;
+
+		li {
+			display: block;
+			padding: .5em;
+			text-align: center;
+			background-color: #333;
+			border-right: 1px solid #191919;
+			border-bottom: 1px solid #191919;
+
+			&:first-child { border-top: 1px solid $colorLight }
+			&:last-child { border-bottom: none }
+		}
+
+		li:nth-child(1) {
+			vertical-align: bottom;
+			color: $colorLighter;
+			font-size: .8em;
+			font-family: DroidSansMono;
+			background-color: $colorDark;
+		}
+
+		li:nth-child(3) {
+
+			padding: 2.5em .5em;
+			flex-grow: 1;
+			position: relative;
+
+			.ui-slider
+			{
+				height: calc(100% - 5em);
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+			}
+		}
+	}
+
+}

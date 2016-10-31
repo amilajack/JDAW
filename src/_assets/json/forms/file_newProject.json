@@ -1,0 +1,37 @@
+[
+	{
+		"name": "Project name",
+		"type": "text",
+		"value": "Untitled"
+	},
+	{
+		"name": "Layout",
+		"type": "select",
+		"options": ["default", "persistant playlist"]
+	},
+	{
+		"name": "Voices",
+		"type": "select",
+		"options": [1,2,8,16,32],
+		"default": 1,
+		"tooltip": "The number of notes that can be played simultaneously"
+	},
+	{
+		"name": "Buffer size",
+		"type": "select",
+		"options": ["auto",256,512,1024,2048,4096,8192,16384],
+		"tooltip": "The number of samples to be processed before being played.\nLower number => better latency, audio glitches more likely"
+	},
+	{
+		"name": "Channels",
+		"type": "select",
+		"options": ["1 (mono)","2 (stereo)"],
+		"values": [1,2],
+		"default": 1
+	},
+	{
+		"name": "Create",
+		"type": "button",
+		"autoDisable": true
+	}
+]

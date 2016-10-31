@@ -1,0 +1,120 @@
+#toolBar {
+	position: absolute;
+	top: 0px; left: 0px;
+
+	background: #222;
+	width: 100%;
+	z-index: 9;
+
+	.waveform {
+		display: none;
+		height: 100%;
+		width:  6em;
+		background-color: #222;
+		position: absolute;
+		right: 0;
+		top: 0px;
+		z-index: 999;
+		box-shadow: inset 0px 0px 0px 5px #000;
+	}
+
+	/* first menu */
+	.menu {
+		outline: none !important;
+
+		position: relative;
+		z-index: 99;
+		width: auto;
+
+		float: left;
+
+		/* first items */
+		> li {
+			padding: .9em 1.5em .7em 1.5em !important;
+			font-weight: bold !important;
+
+			&:hover {
+				background-color: $colorDark;
+				color: rgba(255,255,255,.8);
+			}
+		}
+
+		&:focus {
+			outline: none;
+
+			/* second menu */
+			> li:hover > ul {
+				display: block;
+
+				top: 100%;
+				left: 0px;
+
+				li {
+					color: rgba(255,255,255,.8);
+				}
+
+				/* rest of the menu */
+				li:hover > ul {
+					display: block;
+					top: 0px;
+					left: 100%;
+				}
+			}
+		}
+
+		/* all items */
+		li {
+			color: rgba(255,255,255,.5);
+			font-weight: normal;
+
+			display: inline-block;
+			position: relative;
+			padding: .5em 1em;
+			box-sizing: border-box;
+			cursor: pointer;
+
+			a { color: inherit; text-decoration: none; }
+
+			.shortcut
+			{
+				display: inline-block;
+				padding-left: .5em;
+				color: rgba(255,255,255,.5);
+				font-size: .8em;
+			}
+
+			/* all menus but the first */
+			ul {
+				display: none;
+				position: absolute;
+
+				/* all items but the first */
+				li {
+					display: block;
+					width: 100%;
+					background-color: $colorDark;
+					white-space: nowrap;
+
+					&:hover { background-color: $colorLight; }
+					&:first-child { border-top: none; }
+
+					&.submenu {
+						padding-right: 2em;
+
+						&:before {
+							content: "\e807";
+							font-family: "icon";
+							width: 10px;
+							height: 10px;
+							color: rgba(255,255,255,.5);
+							position: absolute;
+							right: .5em;
+							top: 50%;
+							transform: translateY(-100%);
+						}
+					}
+				}
+			}
+		}
+	}
+}

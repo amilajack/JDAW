@@ -1,0 +1,51 @@
+.gui-knob {
+	width: 49px;
+	height: 49px;
+
+	display: inline-block;
+
+	&.grab {
+		.knob-stroke {
+			stroke-width: 10% !important;
+		}
+		.knob-knob {
+			width: 80% !important;
+			height: 80% !important;
+		}
+	}
+
+	.knob-knob {
+		transition: width .2s, height .2s;
+		background-color: #111 !important;
+		border: 1px solid #222;
+
+		&::before {
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 70%;
+			height: 70%;
+			content: " ";
+			background: linear-gradient(-25deg, rgba(255,255,255,0) 60%,rgba(255,255,255,.07));
+			z-index: 3;
+			filter: blur(1px);
+			border-radius: 100%;
+		}
+	}
+
+	.knob-stroke {
+		stroke-width: 20% !important;
+		transition: stroke-width .2s;
+		stroke: $colorSaturated !important;
+	}
+
+	.knob-tooltip {
+		color: rgba(255, 255, 255, 0.5) !important;
+		background: transparent !important;
+		font-size: 0.8em !important;
+	}
+
+	.knob-pointer {
+		background-color: $colorSaturated !important;
+	}
+}

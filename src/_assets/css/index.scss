@@ -1,0 +1,143 @@
+@import "variables";
+
+@import "chrome/content";
+@import "chrome/contextMenu";
+@import "chrome/toolBar";
+@import "components/playlist";
+@import "components/midiEditor";
+@import "components/beatEditor";
+@import "components/sampleEditor";
+@import "components/fileBrowser";
+@import "components/mixer";
+@import "components/tracks";
+@import "icon-embedded";
+@import "droid-sans-mono-embedded";
+@import "forms";
+
+@import "jquery-ui/resizable";
+@import "jquery-ui/selectable";
+@import "jquery-ui/slider";
+@import "jquery-ui/dialog";
+@import "jquery-ui/knob";
+
+* { margin: 0px; padding: 0px; }
+*:focus { outline: none; }
+
+:not(input):not(textarea):not(select):not([contenteditable]) {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+html
+{
+	font-size: 16px;
+	line-height: 20px;
+	font-family: sans-serif;
+
+	&.nw {
+		box-sizing: border-box;
+		padding-top: 1.5em;
+
+		#titlebar {
+			display: block !important;
+			-webkit-app-region: drag;
+
+			width: 100%;
+			height: 1.5em;
+
+			background: #111;
+			position: absolute;
+			top: -1.5em;
+			left: 0px;
+
+			z-index: 999;
+			overflow: hidden;
+
+			span {
+				cursor: default;
+				color: #999;
+
+				&.title {
+					font-size: .6em;
+
+					position: absolute;
+					top: .2em;
+					left: .6em;
+				}
+
+				&.icon {
+					-webkit-app-region: no-drag;
+
+					width: 1.5em;
+					height: 1em;
+
+					line-height: 0px;
+					display: block;
+
+					float: right;
+					padding: .25em .75em;
+
+					&:hover { color: #fff; background-color: #333; }
+					&.icon-close:hover { background-color: #900; }
+				}
+			}
+		}
+	}
+}
+
+body {
+	background-color: #000;
+	position: relative;
+}
+
+#loading-screen {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 999;
+
+	width: 100%;
+	height: 100%;
+
+	color: #fff;
+	background: #000;
+	pointer-events: none;
+
+	.container {
+		position: absolute;
+		top: 40%;
+		left: 50%;
+
+		width: 50%;
+		height: 50;
+
+		transform: translate(-50%,-50%);
+
+		.log {
+			font-family: monospace;
+			list-style: none;
+			padding: 2em;
+			height: 300px;
+			overflow-y: auto;
+			overflow-x: hidden;
+			border-radius: 2px;
+			background-color: #111;
+		}
+	}
+}
+
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}

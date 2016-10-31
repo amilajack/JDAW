@@ -1,0 +1,90 @@
+{
+  "name": "jdaw",
+  "version": "0.0.1",
+  "description": "A digital audio workstation for the browser",
+  "devDependencies": {
+    "archiver": "^1.1.0",
+    "babel-plugin-external-helpers": "^6.8.0",
+    "babel-plugin-transform-class-properties": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "copy-dir": "^0.3.0",
+    "http-server": "^0.9.0",
+    "node-sass": "^3.10.1",
+    "npm-run-all": "^3.1.1",
+    "npm-watch": "^0.1.6",
+    "nw-builder": "^3.1.2",
+    "rollup": "^0.36.3",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-json": "^2.0.2",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-string": "^2.0.2",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-watch": "^2.5.0"
+  },
+  "watch": {
+    "bundle:html": "src/index.html",
+    "bundle:plugins": "src/_assets/plugins/*"
+  },
+  "scripts": {
+    "install": "node scripts/linkProject.js",
+    "start": "run-p watch:* http-server",
+    "http-server": "http-server",
+    "watch:bundle": "npm-watch",
+    "madge": "madge src --image res/dependency-graph.svg --layout sfdp",
+    "rollup": "rollup -c",
+    "watch:rollup": "rollup -c -w",
+    "watch:sass": "node-sass src/_assets/css/index.scss www/bundle.css -w",
+    "sass": "node-sass src/_assets/css/index.scss www/bundle.css --output-style compressed",
+    "build:current": "nwbuild -r www -v 0.18.0",
+    "build": "node scripts/build.js",
+    "bundle:plugins": "node scripts/bundlePlugins.js",
+    "bundle": "npm run sass && rollup -c --environment final && node scripts/bundle.js",
+    "bundle:html": "node scripts/bundleHtml.js"
+  },
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false,
+          "loose": true
+        }
+      ]
+    ],
+    "plugins": [
+      "external-helpers",
+      "transform-class-properties"
+    ]
+  },
+  "author": "@literallylara",
+  "license": "MIT",
+  "main": "www/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "npm-run-all": "^3.1.1",
+    "npm-watch": "^0.1.6",
+    "rollup-plugin-json": "^2.0.2",
+    "rollup-plugin-string": "^2.0.2",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-watch": "^2.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/literallylara/JDAW.git"
+  },
+  "keywords": [
+    "jdaw",
+    "daw",
+    "digital",
+    "audio",
+    "workstation"
+  ],
+  "bugs": {
+    "url": "https://github.com/literallylara/JDAW/issues"
+  },
+  "homepage": "https://github.com/literallylara/JDAW#readme"
+}

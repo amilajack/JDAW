@@ -1,0 +1,57 @@
+[
+	{
+		"name": "File",
+		"items": [
+			{ "name": "New project", "shortcut": "ctrl+n", "type": "form" },
+			{ "name": "Open project", "shortcut": "ctrl+o" },
+			{ "name": "Save project", "shortcut": "ctrl+s" },
+			{ "name": "Import..", "shortcut": "ctrl+shift+i" },
+			{ "name": "Export..", "shortcut": "ctrl+shift+e" }
+		]
+	},
+	{
+		"name": "Edit",
+		"items": [
+			{
+				"name": "Render all tracks"
+			}
+		]
+	},
+	{
+		"name": "View",
+		"items": [
+			{ "name": "Fullscreen" , "shortcut": "F11" },
+			{
+				"name": "Theme" ,
+				"items": [
+					{
+						"name": "Dark",
+						"items": [
+							{ "name": "Blue" },
+							{ "name": "Cyan" },
+							{ "name": "Pink" },
+							{ "name": "Turquoise" }
+						]
+					},
+					{
+						"name": "Light",
+						"items": [
+							{ "name": "Blue" },
+							{ "name": "Cyan" },
+							{ "name": "Pink" },
+							{ "name": "Turquoise" }
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Help",
+		"items": [
+			{ "name": "Getting started", "type": "link|https://github.com/literallylara/JDAW/docs/getting-started.md" },
+			{ "name": "Plugin development", "type": "link|https://github.com/literallylara/JDAW/docs/plugin-development.md" },
+			{ "name": "About", "type": "popup" }
+		]
+	}
+]

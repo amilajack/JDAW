@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hack Me Maybe?</title>
+		<style>
+			* { margin: 0; padding: 0; }
+
+			html, body {
+			  width: 100%;
+			  height: 100%;
+			  font-family: monospace;
+			}
+
+			h1 {
+				color: #fff;
+				margin-bottom: 1em;
+			}
+
+			body {
+			  background: #111;
+			  
+			  width: 50%;
+			  height: 50%;
+
+			  position: absolute;
+			  top: 40%;
+			  left: 50%;
+			  transform: translate(-50%,-50%);
+			}
+
+			textarea {
+			  padding: 2em;
+			  border: 0px;
+
+			  width: 100%;
+			  height: 100%;
+
+			  color: #fff;
+			  border: 1px solid #fff;
+			  background: #000;
+			  resize: none;
+			}
+
+			span {
+				color: #f00;
+				padding-top: 1em;
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Hack Me Maybe?</h1>
+
+		<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">// code in here gets evaluated inside a webworker as you type
+// can you inject a harmful XSS?
+
+alert("XSS")</textarea>
+
+		<span></span>
+
+		<script>
+			var txt = document.querySelector("textarea")
+			var dbg = document.querySelector("span")
+
+			window.onerror = function(e)
+			{
+				var ok = e.data == "ok"
+
+				dbg.style.color = ok ? "#0f0" : "#f00"
+				txt.style.borderColor = ok ? "#0f0" : "#f00"
+				dbg.innerHTML = ok ? "" : e.data || e
+
+				return true
+			}
+
+			txt.onkeyup = function()
+			{
+				window.worker = new Worker(URL.createObjectURL(new Blob([`delete self.XMLHttpRequest;(function(){try{${this.value};postMessage("ok")}catch(e){postMessage(e.message)}})()`],{type:'application/javascript'})));
+				window.worker.onmessage = window.onerror
+			}
+
+			txt.onkeyup()
+			txt.focus()
+		</script>
+	</body>
+</html>

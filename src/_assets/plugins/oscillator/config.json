@@ -1,0 +1,4 @@
+{
+	"cents": { "min": -1200, "max": 1200, "steps": 12, "value": 0, "type": "knob-pan" },
+	"wave": { "options": ["sin", "tri", "saw", "squ","triHQ","sawHQ","squHQ"], "default": 5, "type": "select" }
+}

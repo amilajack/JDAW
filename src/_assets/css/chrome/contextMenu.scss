@@ -1,0 +1,58 @@
+#contextMenu {
+	position: absolute;
+	top: 200px;
+	left: 200px;
+	z-index: 99;
+	display: none;
+}
+
+#contextMenu {
+
+	&:focus {
+		outline: none;
+
+		/* submenus */
+		li:hover > ul {
+			display: block;
+			top: 0px;
+			left: 100%;
+		}
+	}
+
+	/* all items */
+	li {
+		color: rgba(255,255,255,.7);
+		position: relative;
+		padding: .5em 1em;
+		box-sizing: border-box;
+		cursor: pointer;
+
+		display: block;
+		width: 100%;
+		background-color: #000;
+		white-space: nowrap;
+
+		&:hover { background-color: $colorDark; }
+
+		&.submenu {
+			padding-right: 1.25em;
+
+			&:before {
+				content: "\23f5";
+				width: 10px;
+				height: 10px;
+				color: #999;
+				position: absolute;
+				right: .5em;
+				top: 50%;
+				transform: translateY(-100%);
+			}
+		}
+
+		/* submenus */
+		ul {
+			display: none;
+			position: absolute;
+		}
+	}
+}

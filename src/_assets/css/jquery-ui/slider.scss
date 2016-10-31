@@ -1,0 +1,46 @@
+@import "../variables";
+
+.ui-slider {
+	position: relative;
+	text-align: left;
+	background-color: #000;
+
+	.ui-slider-handle {
+		position: absolute;
+
+		transform: translate(-50%, 50%);
+		cursor: pointer;
+
+		width: 0px;
+		height: 0px;
+
+		background: #000;
+		border-radius: 3px;
+		box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,.1);
+		border: 2px solid #000;
+	}
+}
+
+.ui-slider-vertical {
+
+	margin: 1em 0em;
+	height: 10em;
+	width: 2px;
+
+	.ui-slider-handle {
+		padding: 1em .5em;
+		left: 50%;
+	}
+}
+
+.ui-slider-horizontal {
+
+	margin: 0em 1em;
+	width: 10em;
+	height: 2px;
+
+	.ui-slider-handle {
+		padding: .5em 1em;
+		top: 50%;
+	}
+}
