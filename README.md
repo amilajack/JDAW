@@ -43,9 +43,15 @@ JDAW is available in three formats:
 * Global hint
 * Live wave display
 * Track rendering
-* MIDI import/export
+* MIDI import/export/input/recording
+* Audio recording
 * Project saving/loading
+* Suport for custom themes
 * Plugin UI
+
+## Motivation
+
+Why JavaScript? Why yet another DAW? The answer is simple, there are not a whole lot of free DAWs out there and the ones that do exist are either heavily platform dependent or horribly designed. The main reason however is my personal interest in learning more about digital signal processing, and what better way could there be than developing a fully featured audio work station? Plus, it turns out to be a great distraction from depression! Another goal of this project is to come up with a simple and robust cross-platform plugin interface, see [docs/plugin-development.md](docs/plugin-development.md) for the current draft.
 
 ## Contribution
 
@@ -66,7 +72,7 @@ The source is written in es6 and transpiled with babel using the `es2015` preset
 
 MIT ([LICENSE.txt](LICENSE.txt))  
 
-See `/licenses` for external libraries and resources
+See `/licenses` for licenses regarding external libraries and resources
 
 ## Special Thanks
 
