@@ -1,0 +1,122 @@
+<body><script>
+
+function attachShader(gl, program, type, source)
+{
+	let shader = gl.createShader(type)
+
+	gl.shaderSource(shader, source)
+	gl.compileShader(shader)
+
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS))
+	{
+		alert(gl.getShaderInfoLog(shader))
+		gl.deleteShader(shader)
+		return;
+	}
+
+	gl.attachShader(program, shader)
+	gl.deleteShader(shader)
+}
+
+function setupShader(gl, p, sampleRate, bufferSize)
+{
+	gl.canvas.width = bufferSize
+	gl.canvas.height = 1
+	
+	attachShader(gl, p, gl.VERTEX_SHADER, `
+		attribute vec2 P;
+
+		void main()
+		{
+			gl_Position = vec4(P,0,1);
+		}
+	`)
+
+	attachShader(gl, p, gl.FRAGMENT_SHADER, `
+		precision mediump float;
+		uniform sampler2D uBuffer;
+		uniform float uBufferSize;
+		uniform float uSampleRate;
+		uniform float uBufferIndex;
+
+		#define PI  3.14159265359
+		#define TAU 6.28318530718
+		#define t ((gl_FragCoord.x+uBufferIndex)/uSampleRate)
+
+		void main()
+		{
+			gl_FragColor.a = sin(TAU * 220. * t);
+		}
+	`)
+
+	gl.getExtension("OES_texture_float")
+
+	gl.linkProgram(p)
+	gl.useProgram(p)
+
+	gl.viewport(0,0,bufferSize,1)
+
+	gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
+	gl.bufferData(gl.ARRAY_BUFFER, Int8Array.of(-3,1,1,-3,1,1), gl.STATIC_DRAW)
+
+	gl.enableVertexAttribArray(0)
+	gl.vertexAttribPointer(0,2,gl.BYTE,0,0,0)
+
+	gl.uniform1f(gl.getUniformLocation(p,"uSampleRate"),sampleRate)
+	gl.uniform1f(gl.getUniformLocation(p,"uBufferSize"),bufferSize)
+	gl.uniform1i(gl.getUniformLocation(p,"uBuffer"),0)
+
+	gl.activeTexture(gl.TEXTURE0)
+	gl.bindTexture(gl.TEXTURE_2D, gl.createTexture())
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST)
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST)
+
+	gl.texImage2D(g.TEXTURE_2D, 0, g.ALPHA, s.bufferSize, 1, 0, g.ALPHA, g.FLOAT, new Float32Array(bufferSize))
+}
+
+let a = new AudioContext()
+let s = a.createScriptProcessor(0,1,1)
+let b = new Uint8Array(s.bufferSize*4)
+
+let g = document.createElement("canvas").getContext("webgl", {
+	preserveDrawingBuffer: true,
+	alpha: true,
+	depth: false,
+	stencil: false,
+	antialias: false,
+	premultipliedAlpha: false
+})
+
+let p = g.createProgram()
+
+setupShader(g, p, a.sampleRate, s.bufferSize)
+s.connect(a.destination)
+
+let bufferIndex = 0
+let uBufferIndex = g.getUniformLocation(p,"uBufferIndex")
+
+s.onaudioprocess = function(e)
+{
+	let outputBuffer = e.outputBuffer.getChannelData(0)
+
+	for (let i = 0; i < 16; i++)
+	{
+		g.drawArrays(g.TRIANGLE_FAN,0,3)
+		g.readPixels(0,0,s.bufferSize,1,g.RGBA,g.UNSIGNED_BYTE,b)
+		g.uniform1f(uBufferIndex,bufferIndex)
+
+		let f32a = new Float32Array(s.bufferSize)
+
+		for (let i = 0; i < s.bufferSize; i++)
+		{
+			outputBuffer[i] += (f32a[i] = (b[i*4+3]/0xff-.5)*2)/16
+		}
+
+		g.texSubImage2D(g.TEXTURE_2D, 0, 0, 0, s.bufferSize, 1, g.ALPHA, g.FLOAT, f32a)
+	}
+
+	bufferIndex = (bufferIndex + s.bufferSize) % a.sampleRate
+}
+
+</script>
