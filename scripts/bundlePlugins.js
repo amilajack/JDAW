@@ -1,25 +1,24 @@
-var fs = require("fs")
+var fs       = require("fs")
 var Archiver = require("archiver")
 
-var path = "src/_assets/plugins"
-var fileEnding = ".jap"
+var path    = "src/_assets/plugins"
+var ext     = ".jap"
 var plugins =  fs.readdirSync(path).filter(v=>fs.statSync(path+"/"+v).isDirectory()).map(v=>[v,fs.readdirSync(path+"/"+v)])
 
 !fs.existsSync("www") && fs.mkdirSync("www")
-!fs.existsSync("www/Plugins") && fs.mkdirSync("www/Plugins")
-fs.writeFile("www/plugins/index", plugins.map(v=>v[0]+fileEnding).join("\n"), function(err) { err && console.log(err)})
+!fs.existsSync("www/plugins") && fs.mkdirSync("www/plugins")
+fs.writeFile("www/plugins/index", plugins.map(v=>v[0]+ext).join("\n"), function(err) { err && console.log(err)})
 
 plugins.forEach(function(v)
 {
-	var name = v[0]
-	var items = v[1]
-	var zip = new Archiver("zip")
+	var name   = v[0]
+	var items  = v[1]
+	var zip    = new Archiver("zip")
+	var stream = fs.createWriteStream("www/plugins/" + name + ext)
 
-	var stream = fs.createWriteStream(__dirname + "/../www/plugins/" + name + fileEnding)
+	stream.on("close", function() { console.log(name + ext + " (" + zip.pointer() + "b)"); });
 
 	zip.on("error", function(err) { throw err; });
-	stream.on("close", function() { console.log(name + fileEnding + " (" + zip.pointer() + "b)"); });
-
 	zip.pipe(stream);
 
 	items.forEach(function(v)
