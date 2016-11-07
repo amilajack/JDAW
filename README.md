@@ -51,7 +51,7 @@ JDAW is available in three formats:
 
 ## Motivation
 
-Why JavaScript? Why yet another DAW? The answer is simple, there are not a whole lot of free DAWs out there and the ones that do exist are either heavily platform dependent or horribly designed. The main reason however is my personal interest in learning more about digital signal processing, and what better way could there be than developing a fully featured audio work station? Plus, it turns out to be a great distraction from depression! Another goal of this project is to come up with a simple and robust cross-platform plugin interface, see [docs/plugin-development.md](docs/plugin-development.md) for the current draft.
+Why JavaScript? Why yet another DAW? The answer is simple, there are not a whole lot of free DAWs out there and the ones that do exist are either heavily platform dependent or horribly designed. The main reason however is my personal interest in learning more about digital signal processing, and what better way could there be than developing a fully featured audio work station? Another goal of this project is to come up with a simple and robust cross-platform plugin interface, see [docs/plugin-development.md](docs/plugin-development.md) for the current draft.
 
 ## Contribution
 
